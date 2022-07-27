@@ -21,4 +21,8 @@ WARNING:  DO NOT MODIFY this file unless you are knowledgeable about MSBuild and
         <FSTAR_EXE Condition="'$(FSTAR_HOME)' != ''">$(FSTAR_HOME)\bin\fstar.exe</FSTAR_EXE>
     </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ulibfs" Version="0.0.2" />
+  </ItemGroup>
+
 </Project>
