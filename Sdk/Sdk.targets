@@ -10,6 +10,23 @@ WARNING:  DO NOT MODIFY this file unless you are knowledgeable about MSBuild and
 
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
 
+  <PropertyGroup>
+    <!-- Path where extracted fs files should be written by default -->
+    <FStarExtractedFilesLocation Condition=" '$(FStarExtractedFilesLocation)' == '' ">$(IntermediateOutputPath)extracted\</FStarExtractedFilesLocation>
+    <!-- # 271: theory symbols in smt patters -->
+    <FSTAR_WARN_ERROR Condition=" '$(FSTAR_WARN_ERROR)' == '' ">--warn_error -271</FSTAR_WARN_ERROR>
+
+    <FStarCacheChecked>true</FStarCacheChecked>
+    <FStarCacheLocation>$(IntermediateOutputPath)checked\</FStarCacheLocation>
+
+    <!-- Command line arguments for F# files extraction process. -->
+    <FStarExtractionArgs>--odir $(FStarExtractedFilesLocation) --codegen FSharp</FStarExtractionArgs>
+    <FStarExtractionArgs Condition=" $(FStarCacheChecked) == true ">$(FStarExtractionArgs) --cache_checked_modules --cache_dir $(FStarCacheLocation)</FStarExtractionArgs>
+    <!-- If FSTAR_HOME is not defined then assume that fstar.exe is available on the path -->
+    <FSTAR_EXE Condition="'$(FSTAR_HOME)' == ''">fstar.exe</FSTAR_EXE>
+    <FSTAR_EXE Condition="'$(FSTAR_HOME)' != ''">$(FSTAR_HOME)\bin\fstar.exe</FSTAR_EXE>
+  </PropertyGroup>
+
 <!-- 
         A custom 'inline-task' for translating all kinds of F* source files int expected paths for F# compilation
         https://docs.microsoft.com/en-US/visualstudio/msbuild/msbuild-inline-tasks?view=vs-2019
@@ -81,21 +98,21 @@ WARNING:  DO NOT MODIFY this file unless you are knowledgeable about MSBuild and
                 - Compile item will be completely overriden
         -->
 
-        <!-- Make sure the FSTAR_EXTRACTED_PATH directory exists before extraction -->
-        <MakeDir Directories="$(FSTAR_EXTRACTED_PATH)" Condition="!Exists('$(FSTAR_EXTRACTED_PATH)')" />
+        <!-- Make sure the FStarExtractedFilesLocation directory exists before extraction -->
+        <MakeDir Directories="$(FStarExtractedFilesLocation)" Condition="!Exists('$(FStarExtractedFilesLocation)')" />
         
         <!-- Run extraction for .fst files -->
         <!-- TODO: What about interfaces? Should we at least run verification for them? -->
-        <Exec ConsoleToMsBuild="true" Condition="'%(Compile.Extension)' == '.fst'" Command="$(FSTAR_EXE) $(FSTAR_WARN_ERROR) $(FSTAR_EXTRACTION_FLAGS) $(FSTAR_FLAGS) %(Compile.Identity) --extract &quot;+%(Compile.Filename)&quot;" IgnoreStandardErrorWarningFormat="true" />
+        <Exec ConsoleToMsBuild="true" Condition="'%(Compile.Extension)' == '.fst'" Command="$(FSTAR_EXE) $(FSTAR_WARN_ERROR) $(FStarExtractionArgs) $(FSTAR_FLAGS) %(Compile.Identity) --extract &quot;+%(Compile.Filename)&quot;" IgnoreStandardErrorWarningFormat="true" />
 
-        <TransformFStarSourceFiles Odir="$(FSTAR_EXTRACTED_PATH)" Files="@(Compile)">
+        <TransformFStarSourceFiles Odir="$(FStarExtractedFilesLocation)" Files="@(Compile)">
             <Output ItemName="FsFilesToCompile" TaskParameter="Result" />
         </TransformFStarSourceFiles>
 
         <ItemGroup>
             <GeneratedFileNames Include="@(Compile -> '%(Filename)')" Condition="'%(Extension)' == '.fst'" />
             <GeneratedFileNamesWithUnderscores Include="@(GeneratedFileNames->Replace('.','_'))" />
-            <GeneratedFsFiles Include="$(FSTAR_EXTRACTED_PATH)\%(GeneratedFileNamesWithUnderscores.Identity).fs" />
+            <GeneratedFsFiles Include="$(FStarExtractedFilesLocation)\%(GeneratedFileNamesWithUnderscores.Identity).fs" />
         </ItemGroup>
 
         <Message Text="Generated fs files: @(GeneratedFsFiles)" />
