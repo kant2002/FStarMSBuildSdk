@@ -34,3 +34,10 @@ Create new F# project and replace it with following content.
 </Project>
 ```
 Also rename Program.fs to Program.fst and now you can run your code using `dotnet run`. That's it folks!
+
+## Development
+
+For creation of new version of SDK
+- bump version in the FStarLang.Sdk.csproj
+- run `dotnet build -c Release`
+- publish Nuget file located at `bin\Release` 
