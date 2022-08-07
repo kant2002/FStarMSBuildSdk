@@ -15,7 +15,7 @@ WARNING:  DO NOT MODIFY this file unless you are knowledgeable about MSBuild and
   </PropertyGroup>
 
   <PropertyGroup>
-    <FStarLangVersion Condition="'$(FStarLangVersion)' == ''">0.0.4</FStarLangVersion>
+    <FStarLangVersion Condition="'$(FStarLangVersion)' == ''">0.0.5</FStarLangVersion>
     <!-- Path where extracted fs files should be written by default -->
     <FStarExtractedFilesLocation Condition=" '$(FStarExtractedFilesLocation)' == '' ">$(IntermediateOutputPath)extracted\</FStarExtractedFilesLocation>
     <!-- # 271: theory symbols in smt patters -->
@@ -35,7 +35,7 @@ WARNING:  DO NOT MODIFY this file unless you are knowledgeable about MSBuild and
   </PropertyGroup>
 
     <!-- We can have only Linux and Windows distributions, since FStar does not have other builds. -->
-    <ItemGroup Condition="'$(HostRuntimeIdentifier)' == 'win-x64'">
+    <ItemGroup Condition="'$(HostRuntimeIdentifier)' == 'win-x64' or '$(HostRuntimeIdentifier)' == 'linux-x64'">
        <PackageReference Include="runtime.$(HostRuntimeIdentifier).FStarLang.Compiler"
                          Version="$(FStarLangVersion).*"
                          PrivateAssets="all"
