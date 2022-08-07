@@ -53,8 +53,10 @@ dotnet nuget push --source fstarlang --api-key az src/sdk/bin/Release/FStarLang.
 - run
 ```sh
 dotnet build -r win-x64 -c Release src/runtime/FStarLang.Runtime.csproj
+dotnet build -r linux-x64 -c Release src/runtime/FStarLang.Runtime.csproj
 ```
 - publish Nuget file located at `src\sdk\bin\Release`
 ```
 dotnet nuget push --source fstarlang --api-key az --interactive src/runtime/bin/Release/runtime.win-x64.FStarLang.Compiler.0.0.3.nupkg
+dotnet nuget push --source fstarlang --api-key az --interactive src/runtime/bin/Release/runtime.linux-x64.FStarLang.Compiler.0.0.3.nupkg
 ```

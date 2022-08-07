@@ -7,7 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-      <None Include="build/**"
+      <None Include="build/runtime.$(RuntimeIdentifier).FStarLang.Compiler.props"
+            Pack="true"
+            PackagePath="build" />
+      <None Include="build/runtime.$(RuntimeIdentifier).FStarLang.Compiler.targets"
             Pack="true"
             PackagePath="build" />
       <None Include="$(_ArchiveDestination)**"
@@ -32,9 +35,9 @@
             DestinationFolder="$(OutputPath)"
             Condition="'$(FStarArchiveType)' == 'zip' and !Exists('$(_ArchiveDestination)fstar\bin\fstar.exe')" />
 
-    <Exec Command="tar xf &quot;../../$(_ArchivePath)&quot;"
+    <Exec Command="tar xfz &quot;$(MSBuildThisFileDirectory)$(_ArchivePath)&quot;"
           WorkingDirectory="$(OutputPath)"
-          Condition="'$(FStarArchiveType)' == 'tar.xz' and !Exists('$(_ArchiveDestination)fstar\bin\fstar')" />
+          Condition="'$(FStarArchiveType)' == 'tar.gz' and !Exists('$(_ArchiveDestination)fstar\bin\fstar')" />
   </Target>
 
 </Project>

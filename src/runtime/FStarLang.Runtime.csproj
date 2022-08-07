@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.Build.NoTargets/3.5.6">
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
-    <VersionPrefix>0.0.3</VersionPrefix>
+    <VersionPrefix>0.0.4</VersionPrefix>
     <FStarLangVersion>2022.07.13</FStarLangVersion>
     <Description>Provides runtime tools for building F* applications. F* Compiler version: $(FStarLangVersion)</Description>
     <PackageTags>MSBuild MSBuildSdk fstar runtime</PackageTags>
@@ -11,8 +11,13 @@
     <PackageId>runtime.$(RuntimeIdentifier).FStarLang.Compiler</PackageId>
   </PropertyGroup>
 
-    <PropertyGroup>
+    <PropertyGroup Condition="'$(RuntimeIdentifier)' == 'win-x64'">
         <FStarArchiveName>Windows_x64</FStarArchiveName>
         <FStarArchiveType>zip</FStarArchiveType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(RuntimeIdentifier)' == 'linux-x64'">
+        <FStarArchiveName>Linux_x86_64</FStarArchiveName>
+        <FStarArchiveType>tar.gz</FStarArchiveType>
     </PropertyGroup>
 </Project>
