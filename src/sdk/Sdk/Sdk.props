@@ -10,6 +10,14 @@ WARNING:  DO NOT MODIFY this file unless you are knowledgeable about MSBuild and
 
   <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
 
+    <!--
+    We set this so that third-party build logic can determine whether it is
+    running in the context of a FStarLang.Sdk-based project.
+    -->
+    <PropertyGroup>
+        <UsingFStarLangSdk>true</UsingFStarLangSdk>
+    </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="ulibfs" Version="0.0.2" IsImplicitlyDefined="true" />
   </ItemGroup>

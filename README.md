@@ -41,20 +41,18 @@ For creation of new version of SDK
 - bump version in the `src\sdk\FStarLang.Sdk.csproj`
 - run 
 ```sh
-cd src/sdk
-dotnet build -c Release
+dotnet build -c Release src/sdk/FStarLang.Sdk.csproj
 ```
 - publish Nuget file located at `src\sdk\bin\Release`
 ```
-dotnet nuget push --source fstarlang --api-key az .\src\sdk\bin\Release\FStarLang.Sdk.0.0.3.nupkg 
+dotnet nuget push --source fstarlang --api-key az src/sdk/bin/Release/FStarLang.Sdk.0.0.4.nupkg
 ```
 - Go back to root of the project
 - run
 ```sh
-cd src/runtime
-dotnet build -r win-x64 -c Release /p:FStarLangVersion=2022.07.13
+dotnet build -r win-x64 -c Release /p:FStarLangVersion=2022.07.13 src/runtime/FStarLang.Runtime.csproj
 ```
 - publish Nuget file located at `src\sdk\bin\Release`
 ```
-dotnet nuget push --source fstarlang --api-key az --interactive .\src\runtime\bin\Release\FStarLang.Runtime.0.0.1.nupkg
+dotnet nuget push --source fstarlang --api-key az --interactive src/runtime/bin/Release/runtime.win-x64.FStarLang.Compiler.0.0.2.nupkg
 ```
