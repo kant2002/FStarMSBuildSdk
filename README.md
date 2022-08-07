@@ -38,6 +38,10 @@ Also rename Program.fs to Program.fst and now you can run your code using `dotne
 ## Development
 
 For creation of new version of SDK
-- bump version in the FStarLang.Sdk.csproj
-- run `dotnet build -c Release`
-- publish Nuget file located at `bin\Release` 
+- bump version in the `src\sdk\FStarLang.Sdk.csproj`
+- run 
+```sh
+cd src/sdk
+dotnet build -c Release
+```
+- publish Nuget file located at `src\sdk\bin\Release`
