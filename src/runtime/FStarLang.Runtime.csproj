@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.Build.NoTargets/3.5.6">
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <VersionPrefix>0.0.1</VersionPrefix>
+    <Description>Provides runtime tools for building F* applications.</Description>
+    <PackageTags>MSBuild MSBuildSdk fstar runtime</PackageTags>
+    <ArtifactsPath>$(BaseArtifactsPath)$(MSBuildProjectName)\</ArtifactsPath>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageType>Dependency</PackageType>
+    <PackageId>runtime.$(RuntimeIdentifier).FStarLang.Compiler</PackageId>
+  </PropertyGroup>
+
+    <PropertyGroup>
+        <FStarArchiveName>Windows_x64</FStarArchiveName>
+        <FStarArchiveType>zip</FStarArchiveType>
+    </PropertyGroup>
+</Project>

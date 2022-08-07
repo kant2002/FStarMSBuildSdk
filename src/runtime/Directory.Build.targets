@@ -1,0 +1,40 @@
+<Project>
+  <PropertyGroup>
+    <_ArchiveBase>fstar_$(FStarLangVersion)_$(FStarArchiveName)</_ArchiveBase>
+    <_ArchiveName>$(_ArchiveBase).$(FStarArchiveType)</_ArchiveName>
+    <_ArchivePath>$(OutputPath)$(_ArchiveName)</_ArchivePath>
+    <_ArchiveDestination>$(OutputPath)fstar\</_ArchiveDestination>
+  </PropertyGroup>
+
+  <ItemGroup>
+      <None Include="build/**"
+            Pack="true"
+            PackagePath="build" />
+      <None Include="$(_ArchiveDestination)**"
+            Exclude="$(_ArchiveDestination)**/.gitignore"
+            Pack="true"
+            PackagePath="tools" />
+  </ItemGroup>
+
+  <Target Name="_RestoreArchive"
+        AfterTargets="_GenerateRestoreProjectPathWalk">
+    <Error Text="FStarLangVersion variable is not set" Condition="'$(FStarLangVersion)' == ''" />
+    <Error Text="RuntimeIdentifier variable is not set" Condition="'$(RuntimeIdentifier)' == ''" />
+    <Error Text="Only win-x64 and linux-x64 supported" Condition="'$(RuntimeIdentifier)' != 'win-x64' and '$(RuntimeIdentifier)' != 'linux-x64'" />
+    
+    <DownloadFile SourceUrl="https://github.com/FStarLang/FStar/releases/download/v$(FStarLangVersion)/$(_ArchiveName)"
+                  DestinationFolder="$(OutputPath)"
+                  Condition="!Exists('$(_ArchivePath)')" />
+
+    <MakeDir Directories="$(OutputPath)" />
+
+    <Unzip SourceFiles="$(_ArchivePath)"
+            DestinationFolder="$(OutputPath)"
+            Condition="'$(FStarArchiveType)' == 'zip' and !Exists('$(_ArchiveDestination)fstar\bin\fstar.exe')" />
+
+    <Exec Command="tar xf &quot;../../$(_ArchivePath)&quot;"
+          WorkingDirectory="$(OutputPath)"
+          Condition="'$(FStarArchiveType)' == 'tar.xz' and !Exists('$(_ArchiveDestination)fstar\bin\fstar')" />
+  </Target>
+
+</Project>

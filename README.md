@@ -45,3 +45,16 @@ cd src/sdk
 dotnet build -c Release
 ```
 - publish Nuget file located at `src\sdk\bin\Release`
+```
+dotnet nuget push --source fstarlang --api-key az .\src\sdk\bin\Release\FStarLang.Sdk.0.0.3.nupkg 
+```
+- Go back to root of the project
+- run
+```sh
+cd src/runtime
+dotnet build -r win-x64 -c Release /p:FStarLangVersion=2022.07.13
+```
+- publish Nuget file located at `src\sdk\bin\Release`
+```
+dotnet nuget push --source fstarlang --api-key az --interactive .\src\runtime\bin\Release\FStarLang.Runtime.0.0.1.nupkg
+```
