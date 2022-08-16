@@ -6,7 +6,7 @@ This is MSBuild SDK for F*.
 ## Use templates
 
 ```shell
-dotnet new install FStarLang.DotNet.Common.ProjectTemplates.1.0::0.0.9 --nuget-source https://codevision.pkgs.visualstudio.com/FStarLang/_packaging/fstarlang/nuget/v3/index.json
+dotnet new install FStarLang.DotNet.Common.ProjectTemplates.1.0::0.1.0 --nuget-source https://codevision.pkgs.visualstudio.com/FStarLang/_packaging/fstarlang/nuget/v3/index.json
 ```
 
 Then you can create project using
