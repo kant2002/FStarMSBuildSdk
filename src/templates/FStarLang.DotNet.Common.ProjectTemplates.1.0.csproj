@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <VersionPrefix>0.0.9</VersionPrefix>
+        <TargetFramework>netstandard1.0</TargetFramework>
+        <IncludeBuildOutput>False</IncludeBuildOutput>
+        <IncludeSource>False</IncludeSource>
+        <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+        <OutputPath>$(ArtifactsTmpDir)</OutputPath>
+        <EnableDefaultItems>False</EnableDefaultItems>
+        <UsingToolTemplateLocalizer>true</UsingToolTemplateLocalizer>
+        <IsPackable>true</IsPackable>
+        <IsShipping>true</IsShipping>
+        <IsShippingPackage>true</IsShippingPackage>
+        <NoWarn>2008;NU5105</NoWarn>
+        <NoPackageAnalysis>true</NoPackageAnalysis>
+        <PackageId>FStarLang.DotNet.Common.ProjectTemplates.1.0</PackageId>
+        <Authors>Andrii Kurdiumov</Authors>
+        <Description>Common File Templates for F* language</Description>
+        <language>en-US</language>
+        <PackageProjectUrl>https://github.com/kant2002/fstarmsbuildsdk</PackageProjectUrl>
+        <PackageType>Template</PackageType>
+        <SuppressDependenciesWhenPacking>True</SuppressDependenciesWhenPacking>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Remove="Microsoft.NETCore.App" />
+        <Content Include="content\**">
+            <PackagePath>content</PackagePath>
+        </Content>
+    </ItemGroup>
+</Project>

@@ -1,0 +1,16 @@
+{
+  "author": "Андрій Курдюмов",
+  "name": "Консольна апплікація",
+  "description": "Проект для створення апплікації командного рядка, яка може вконуватися у середі .NET у Windows, Linux та macOS",
+  "symbols/TargetFrameworkOverride/description": "Перевизначае цільову платформу",
+  "symbols/TargetFrameworkOverride/displayName": "Перевизначення цільової платформы",
+  "symbols/Framework/description": "Цільова платформа для проекта.",
+  "symbols/Framework/choices/net7.0/description": "Цільова версія net7.0",
+  "symbols/Framework/choices/net7.0/displayName": ".NET 7.0",
+  "symbols/Framework/displayName": "Платформа",
+  "symbols/skipRestore/description": "Якщо встановлено, автоматично відновлення проекта буде пропущено при створюванні.",
+  "symbols/skipRestore/displayName": "Пропустити відновлення",
+  "postActions/restore/description": "Відновлення пакетів NuGet, необходимых для этого проекта.",
+  "postActions/restore/manualInstructions/default/text": "Виконати команду \"dotnet restore\"",
+  "postActions/open-file/description": "Відкрити файл Program.fst в редакторі"
+}

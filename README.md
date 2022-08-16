@@ -3,7 +3,18 @@
 This is MSBuild SDK for F*.
 
 
-## How to use
+## Use templates
+
+```shell
+dotnet new install FStarLang.DotNet.Common.ProjectTemplates.1.0::0.0.9 --nuget-source https://codevision.pkgs.visualstudio.com/FStarLang/_packaging/fstarlang/nuget/v3/index.json
+```
+
+Then you can create project using
+```shell
+dotnet new fstarconsole -o helloworld
+```
+
+## Manually convert F# project
 
 Create new Nuget.config using `dotnet new nugetconfig`
 
@@ -60,3 +71,12 @@ dotnet build -r linux-x64 -c Release src/runtime/FStarLang.Runtime.csproj
 dotnet nuget push --source fstarlang --api-key az --interactive src/runtime/bin/Release/runtime.win-x64.FStarLang.Compiler.0.0.3.nupkg
 dotnet nuget push --source fstarlang --api-key az --interactive src/runtime/bin/Release/runtime.linux-x64.FStarLang.Compiler.0.0.3.nupkg
 ```
+- Go back to root of the project
+- bump version in the `src/templates/FStarLang.DotNet.Common.ProjectTemplates.1.0.csproj`
+- run
+```sh
+dotnet pack -c Release src/templates/FStarLang.DotNet.Common.ProjectTemplates.1.0.csproj
+```
+- publish Nuget file located at `src\sdk\bin\Release`
+```
+dotnet nuget push --source fstarlang --api-key az --interactive src/templates/bin/Release/FStarLang.DotNet.Common.ProjectTemplates.1.0.0.0.5```
