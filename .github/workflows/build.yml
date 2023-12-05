@@ -44,3 +44,10 @@ jobs:
       - name: 🛠 Pack ProjectTemplates 🛠
         shell: bash
         run: dotnet pack -c Release src/templates/FStarLang.DotNet.Common.ProjectTemplates.1.0.csproj
+
+      - name: 🛠 Publish templates 🛠
+        shell: bash
+        run: dotnet nuget push --source fstarlang --api-key ${AZ_DEVOPS_KEY} artifacts/package/release/*.nupkg
+        if: github.event_name == 'push'
+        env:
+          AZ_DEVOPS_KEY: ${{ secrets.AZ_DEVOPS_KEY }}

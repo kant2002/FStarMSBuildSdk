@@ -2,7 +2,7 @@
     <PropertyGroup>
         <UseArtifactsOutput>true</UseArtifactsOutput>
         <VersionSuffix Condition="'$(GITHUB_RUN_NUMBER)' == '' and $(ReleaseBuild) != true">dev</VersionSuffix>
-        <VersionSuffix Condition="'$(GITHUB_RUN_NUMBER)' != '' and $(ReleaseBuild) != true">ci-$(GITHUB_RUN_NUMBER)-$(GITHUB_RUN_ATTEMPT)</VersionSuffix>
+        <VersionSuffix Condition="'$(GITHUB_RUN_NUMBER)' != '' and $(ReleaseBuild) != true">ci-$(GITHUB_RUN_NUMBER).$(GITHUB_RUN_ATTEMPT)</VersionSuffix>
         <VersionSuffix Condition="$(ReleaseBuild) == true"></VersionSuffix>
     </PropertyGroup>
 </Project>
