@@ -23,7 +23,7 @@
         AfterTargets="_GenerateRestoreProjectPathWalk">
     <Error Text="FStarLangVersion variable is not set" Condition="'$(FStarLangVersion)' == ''" />
     <Error Text="RuntimeIdentifier variable is not set" Condition="'$(RuntimeIdentifier)' == ''" />
-    <Error Text="Only win-x64 and linux-x64 supported" Condition="'$(RuntimeIdentifier)' != 'win-x64' and '$(RuntimeIdentifier)' != 'linux-x64'" />
+    <Error Text="Only win-x64, linux-x64 and osx-x64 supported" Condition="'$(RuntimeIdentifier)' != 'win-x64' and '$(RuntimeIdentifier)' != 'linux-x64' and '$(RuntimeIdentifier)' != 'osx-x64'" />
     
     <DownloadFile SourceUrl="https://github.com/FStarLang/FStar/releases/download/v$(FStarLangVersion)/$(_ArchiveName)"
                   DestinationFolder="$(OutputPath)"
