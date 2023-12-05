@@ -37,6 +37,10 @@ jobs:
         shell: bash
         run: dotnet build -r linux-x64 -c Release src/runtime/FStarLang.Runtime.csproj
 
+      - name: 🛠 Build Runtime osx-x64 🛠
+        shell: bash
+        run: dotnet build -r osx-x64 -c Release src/runtime/FStarLang.Runtime.csproj
+
       - name: 🛠 Pack ProjectTemplates 🛠
         shell: bash
         run: dotnet pack -c Release src/templates/FStarLang.DotNet.Common.ProjectTemplates.1.0.csproj
