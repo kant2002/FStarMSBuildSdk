@@ -4,7 +4,7 @@
     <VersionPrefix>0.1.0</VersionPrefix>
     <Description>Provides MSBuild support for F* projects.</Description>
     <PackageTags>MSBuild MSBuildSdk fstar</PackageTags>
-    <ArtifactsPath>$(BaseArtifactsPath)$(MSBuildProjectName)\</ArtifactsPath>
+    <!-- <ArtifactsPath>$(BaseArtifactsPath)$(MSBuildProjectName)\</ArtifactsPath> -->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageType>MSBuildSdk</PackageType>
   </PropertyGroup>

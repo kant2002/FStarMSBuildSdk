@@ -5,7 +5,7 @@
     <FStarLangVersion>2022.07.13</FStarLangVersion>
     <Description>Provides runtime tools for building F* applications. F* Compiler version: $(FStarLangVersion)</Description>
     <PackageTags>MSBuild MSBuildSdk fstar runtime</PackageTags>
-    <ArtifactsPath>$(BaseArtifactsPath)$(MSBuildProjectName)\</ArtifactsPath>
+    <!-- <ArtifactsPath>$(BaseArtifactsPath)$(MSBuildProjectName)\</ArtifactsPath> -->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageType>Dependency</PackageType>
     <PackageId>runtime.$(RuntimeIdentifier).FStarLang.Compiler</PackageId>
