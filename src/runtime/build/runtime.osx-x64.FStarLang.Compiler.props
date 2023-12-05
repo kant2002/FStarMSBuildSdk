@@ -1,0 +1,9 @@
+<Project>
+    <PropertyGroup>
+        <FStarToolsetPath>$([MSBuild]::NormalizeDirectory('$(MSBuildThisFileDirectory)../tools'))</FStarToolsetPath>
+        <FStarExePath>$([MSBuild]::NormalizePath('$(FStarToolsetPath)bin/fstar.exe'))</FStarExePath>
+        <Z3ExePath Condition="'$(Z3ExePath)' == ''">$([MSBuild]::NormalizePath('$(FStarToolsetPath)bin/z3'))</Z3ExePath>
+        <FStarLibPath>$([MSBuild]::NormalizeDirectory('$(FStarToolsetPath)ulib'))</FStarLibPath>
+        <FStarDocPath>$([MSBuild]::NormalizeDirectory('$(FStarToolsetPath)doc'))</FStarDocPath>
+    </PropertyGroup>
+</Project>
