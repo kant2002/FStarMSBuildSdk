@@ -47,7 +47,7 @@ jobs:
 
       - name: 🛠 Publish templates 🛠
         shell: bash
-        run: dotnet nuget push --source fstarlang --api-key ${AZ_DEVOPS_KEY} artifacts/package/release/*.nupkg
+        run: dotnet nuget push --source fstarlang --api-key ${{ secrets.AZ_DEVOPS_KEY }} "artifacts/package/release/*.nupkg"
         if: github.event_name == 'push'
         env:
           AZ_DEVOPS_KEY: ${{ secrets.AZ_DEVOPS_KEY }}
