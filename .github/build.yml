@@ -1,0 +1,42 @@
+name: Run Build and Package
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  main:
+    runs-on: ${{ matrix.environment }}
+    strategy:
+      matrix:
+        environment:
+          - ubuntu-latest
+      fail-fast: false
+    env:
+      DOTNET_NOLOGO: 1
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      NUGET_PACKAGES: ${{ github.workspace }}/.github/nuget-packages
+    steps:
+      - name: 📝 Fetch Sources 📝
+        uses: actions/checkout@v2
+
+      - name: 🛠 Build Sdk 🛠
+        shell: bash
+        run: dotnet build -c Release src/sdk/FStarLang.Sdk.csproj
+
+      - name: 🛠 Build Runtime win-x64 🛠
+        shell: bash
+        run: dotnet build -r win-x64 -c Release src/runtime/FStarLang.Runtime.csproj
+
+      - name: 🛠 Build Runtime linux-x64 🛠
+        shell: bash
+        run: dotnet build -r linux-x64 -c Release src/runtime/FStarLang.Runtime.csproj
+
+      - name: 🛠 Pack ProjectTemplates 🛠
+        shell: bash
+        run: dotnet pack -c Release src/templates/FStarLang.DotNet.Common.ProjectTemplates.1.0.csproj
