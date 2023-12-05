@@ -35,7 +35,7 @@
             DestinationFolder="$(OutputPath)"
             Condition="'$(FStarArchiveType)' == 'zip' and !Exists('$(_ArchiveDestination)fstar\bin\fstar.exe')" />
 
-    <Exec Command="tar xfz &quot;$(MSBuildThisFileDirectory)$(_ArchivePath)&quot;"
+    <Exec Command="tar xfz &quot;$([MSBuild]::NormalizePath('$(_ArchivePath)')&quot;"
           WorkingDirectory="$(OutputPath)"
           Condition="'$(FStarArchiveType)' == 'tar.gz' and !Exists('$(_ArchiveDestination)fstar\bin\fstar')" />
   </Target>
