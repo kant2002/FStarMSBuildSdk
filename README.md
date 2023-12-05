@@ -79,4 +79,5 @@ dotnet pack -c Release src/templates/FStarLang.DotNet.Common.ProjectTemplates.1.
 ```
 - publish Nuget file located at `src\sdk\bin\Release`
 ```
-dotnet nuget push --source fstarlang --api-key az --interactive src/templates/bin/Release/FStarLang.DotNet.Common.ProjectTemplates.1.0.0.0.5```
+dotnet nuget push --source fstarlang --api-key az --interactive src/templates/bin/Release/FStarLang.DotNet.Common.ProjectTemplates.1.0.0.0.5
+```
