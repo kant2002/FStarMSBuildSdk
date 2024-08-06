@@ -36,7 +36,7 @@ WARNING:  DO NOT MODIFY this file unless you are knowledgeable about MSBuild and
 
     <!-- We can have only Linux and Windows distributions, since FStar does not have other builds. -->
     <ItemGroup Condition="'$(HostRuntimeIdentifier)' == 'win-x64' or '$(HostRuntimeIdentifier)' == 'linux-x64'">
-       <PackageReference Include="runtime.$(HostRuntimeIdentifier).FStarLang.Compiler"
+       <PackageReference Include="FStarLang.Compiler.runtime.$(HostRuntimeIdentifier)"
                          Version="$(FStarLangVersion).*"
                          PrivateAssets="all"
                          IsImplicitlyDefined="true" />

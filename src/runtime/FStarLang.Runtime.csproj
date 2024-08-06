@@ -8,7 +8,7 @@
     <!-- <ArtifactsPath>$(BaseArtifactsPath)$(MSBuildProjectName)\</ArtifactsPath> -->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageType>Dependency</PackageType>
-    <PackageId>runtime.$(RuntimeIdentifier).FStarLang.Compiler</PackageId>
+    <PackageId>FStarLang.Compiler.runtime.$(RuntimeIdentifier)</PackageId>
   </PropertyGroup>
 
     <PropertyGroup Condition="'$(RuntimeIdentifier)' == 'win-x64'">
