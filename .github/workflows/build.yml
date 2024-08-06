@@ -51,10 +51,5 @@ jobs:
         run: dotnet pack -c Release src/templates/FStarLang.DotNet.Common.ProjectTemplates.1.0.csproj
 
       - name: 🛠 Publish templates 🛠
-        shell: bash
-        run:
-            echo ${{ secrets.AZ_DEVOPS_KEY }} 
-            dotnet nuget push "artifacts/package/release/*.nupkg" --source fstarlang --api-key ${{ secrets.AZ_DEVOPS_KEY }} --skip-duplicate
+        run: dotnet nuget push "artifacts/package/release/*.nupkg" --source fstarlang --api-key ${{ secrets.AZ_DEVOPS_KEY }} --skip-duplicate
         if: github.event_name == 'push' || github.event.inputs.publish_artifacts == 'true'
-        env:
-          AZ_DEVOPS_KEY: ${{ secrets.AZ_DEVOPS_KEY }}
