@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
     <VersionPrefix>0.0.6</VersionPrefix>
-    <FStarLangVersion>2023.09.03</FStarLangVersion>
-    <Description>Provides runtime tools for building F* applications. F* Compiler version: $(FStarLangVersion)</Description>
+    <FStarCompilerVersion>2023.09.03</FStarCompilerVersion>
+    <Description>Provides runtime tools for building F* applications. F* Compiler version: $(FStarCompilerVersion)</Description>
     <PackageTags>MSBuild MSBuildSdk fstar runtime</PackageTags>
     <!-- <ArtifactsPath>$(BaseArtifactsPath)$(MSBuildProjectName)\</ArtifactsPath> -->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
