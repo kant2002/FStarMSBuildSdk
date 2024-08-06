@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
+    inputs:
+      publish_artifacts:
+        description: 'Publish artifacts'
+        required: true
+        default: 'true'
   schedule:
     - cron: '0 0 * * 0'
 
@@ -50,6 +55,6 @@ jobs:
         run:
             echo ${{ secrets.AZ_DEVOPS_KEY }} 
             dotnet nuget push --source fstarlang --api-key ${{ secrets.AZ_DEVOPS_KEY }} "artifacts/package/release/*.nupkg"
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' || github.event.inputs.publish_artifacts == 'true'
         env:
           AZ_DEVOPS_KEY: ${{ secrets.AZ_DEVOPS_KEY }}
