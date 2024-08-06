@@ -70,5 +70,5 @@ jobs:
         uses: actions/setup-dotnet@v4
 
       - name: Publish nuget package
-        run: dotnet nuget push "artifacts/package/release/*.nupkg" --source fstarlang --api-key ${{ secrets.AZ_DEVOPS_KEY }} --skip-duplicate
+        run: dotnet nuget push "artifacts/package/release/*.nupkg" --source https://codevision.pkgs.visualstudio.com/FStarLang/_packaging/fstarlang/nuget/v3/index.json --api-key ${{ secrets.AZ_DEVOPS_KEY }} --skip-duplicate
         if: github.event_name == 'push' || github.event.inputs.publish_artifacts == 'true'
