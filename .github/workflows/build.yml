@@ -28,7 +28,7 @@ jobs:
       NUGET_PACKAGES: ${{ github.workspace }}/.github/nuget-packages
     steps:
       - name: 📝 Fetch Sources 📝
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: 🛠 Build Sdk 🛠
         shell: bash
@@ -54,7 +54,7 @@ jobs:
         shell: bash
         run:
             echo ${{ secrets.AZ_DEVOPS_KEY }} 
-            dotnet nuget push --source fstarlang --api-key ${{ secrets.AZ_DEVOPS_KEY }} "artifacts/package/release/*.nupkg"
+            dotnet nuget push "artifacts/package/release/*.nupkg" --source fstarlang --api-key ${{ secrets.AZ_DEVOPS_KEY }} --skip-duplicate
         if: github.event_name == 'push' || github.event.inputs.publish_artifacts == 'true'
         env:
           AZ_DEVOPS_KEY: ${{ secrets.AZ_DEVOPS_KEY }}
