@@ -50,6 +50,25 @@ jobs:
         shell: bash
         run: dotnet pack -c Release src/templates/FStarLang.DotNet.Common.ProjectTemplates.1.0.csproj
 
-      - name: 🛠 Publish templates 🛠
+      - uses: actions/upload-artifact@v3.1.3
+        with:
+          name: nuget
+          path: artifacts/package/release
+          if-no-files-found: error
+          retention-days: 1
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: [main]
+    steps:
+      - uses: actions/download-artifact@v3.0.2
+        with:
+          name: nuget
+          path: artifacts/package/release/
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+
+      - name: Publish nuget package
         run: dotnet nuget push "artifacts/package/release/*.nupkg" --source fstarlang --api-key ${{ secrets.AZ_DEVOPS_KEY }} --skip-duplicate
         if: github.event_name == 'push' || github.event.inputs.publish_artifacts == 'true'
