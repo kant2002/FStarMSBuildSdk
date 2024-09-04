@@ -52,32 +52,33 @@ For creation of new version of SDK
 - bump version in the `src\sdk\FStarLang.Sdk.csproj`
 - run 
 ```sh
-dotnet build -c Release src/sdk/FStarLang.Sdk.csproj
+dotnet build -c Release src/sdk/FStarLang.Sdk.csproj /p:ReleaseBuild=true
 ```
 - publish Nuget file located at `src\sdk\bin\Release`
 ```
-dotnet nuget push --source fstarlang --api-key az src/sdk/bin/Release/FStarLang.Sdk.0.0.5.nupkg
+dotnet nuget push --source fstarlang --api-key $ApiKey src/sdk/bin/Release/FStarLang.Sdk.0.1.2.nupkg
 ```
 - Go back to root of the project
 - bump version in the `src/runtime/FStarLang.Runtime.csproj`
 - Change `FStarCompilerVersion` to latest F* compiler release in the `src/runtime/FStarLang.Runtime.csproj`
 - run
 ```sh
-dotnet build -r win-x64 -c Release src/runtime/FStarLang.Runtime.csproj
-dotnet build -r linux-x64 -c Release src/runtime/FStarLang.Runtime.csproj
+dotnet build -r win-x64 -c Release src/runtime/FStarLang.Runtime.csproj /p:ReleaseBuild=true
+dotnet build -r linux-x64 -c Release src/runtime/FStarLang.Runtime.csproj /p:ReleaseBuild=true
 ```
 - publish Nuget file located at `src\sdk\bin\Release`
 ```
-dotnet nuget push --source fstarlang --api-key az --interactive src/runtime/bin/Release/runtime.win-x64.FStarLang.Compiler.0.0.3.nupkg
-dotnet nuget push --source fstarlang --api-key az --interactive src/runtime/bin/Release/runtime.linux-x64.FStarLang.Compiler.0.0.3.nupkg
+dotnet restore src/sdk/FStarLang.Sdk.csproj --interactive
+dotnet nuget push --source fstarlang --api-key $ApiKey src/runtime/bin/Release/FStarLang.Compiler.runtime.win-x64.0.0.6.nupkg
+dotnet nuget push --source fstarlang --api-key $ApiKey src/runtime/bin/Release/FStarLang.Compiler.runtime.linux-x64.0.0.6.nupkg
 ```
 - Go back to root of the project
 - bump version in the `src/templates/FStarLang.DotNet.Common.ProjectTemplates.1.0.csproj`
 - run
 ```sh
-dotnet pack -c Release src/templates/FStarLang.DotNet.Common.ProjectTemplates.1.0.csproj
+dotnet pack -c Release src/templates/FStarLang.DotNet.Common.ProjectTemplates.1.0.csproj /p:ReleaseBuild=true
 ```
 - publish Nuget file located at `src\sdk\bin\Release`
 ```
-dotnet nuget push --source fstarlang --api-key az --interactive src/templates/bin/Release/FStarLang.DotNet.Common.ProjectTemplates.1.0.0.0.5
+dotnet nuget push --source fstarlang --api-key $ApiKey artifacts/package/release/FStarLang.DotNet.Common.ProjectTemplates.1.0.0.1.2.nupkg
 ```
