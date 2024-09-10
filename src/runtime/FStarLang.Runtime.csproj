@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.Build.NoTargets/3.5.6">
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
-    <VersionPrefix>0.0.6</VersionPrefix>
-    <FStarCompilerVersion>2023.09.03</FStarCompilerVersion>
+    <VersionPrefix>0.0.7</VersionPrefix>
+    <FStarCompilerVersion>2024.08.14</FStarCompilerVersion>
     <Description>Provides runtime tools for building F* applications. F* Compiler version: $(FStarCompilerVersion)</Description>
     <PackageTags>MSBuild MSBuildSdk fstar runtime</PackageTags>
     <!-- <ArtifactsPath>$(BaseArtifactsPath)$(MSBuildProjectName)\</ArtifactsPath> -->

@@ -7,10 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-      <None Include="build/runtime.$(RuntimeIdentifier).FStarLang.Compiler.props"
+      <None Include="build/FStarLang.Compiler.runtime.$(RuntimeIdentifier).props"
             Pack="true"
             PackagePath="build" />
-      <None Include="build/runtime.$(RuntimeIdentifier).FStarLang.Compiler.targets"
+      <None Include="build/FStarLang.Compiler.runtime.$(RuntimeIdentifier).targets"
             Pack="true"
             PackagePath="build" />
       <None Include="$(_ArchiveDestination)**"
@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <Target Name="_RestoreArchive"
-        AfterTargets="_GenerateRestoreProjectPathWalk">
+        BeforeTargets="_RemoveUnnecessaryFilesFromArchive">
     <Error Text="FStarCompilerVersion variable is not set" Condition="'$(FStarCompilerVersion)' == ''" />
     <Error Text="RuntimeIdentifier variable is not set" Condition="'$(RuntimeIdentifier)' == ''" />
     <Error Text="Only win-x64, linux-x64 and osx-x64 supported" Condition="'$(RuntimeIdentifier)' != 'win-x64' and '$(RuntimeIdentifier)' != 'linux-x64' and '$(RuntimeIdentifier)' != 'osx-x64'" />
@@ -38,6 +38,14 @@
     <Exec Command="tar xfz &quot;$([MSBuild]::NormalizePath('$(_ArchivePath)'))&quot;"
           WorkingDirectory="$(OutputPath)"
           Condition="'$(FStarArchiveType)' == 'tar.gz' and !Exists('$(_ArchiveDestination)fstar\bin\fstar')" />
+  </Target>
+
+  <Target Name="_RemoveUnnecessaryFilesFromArchive"
+        AfterTargets="_GenerateRestoreProjectPathWalk">
+     <ItemGroup>
+       <FilesToDelete Include="$(_ArchiveDestination)lib\fstar\lib\*.cmt"/>
+     </ItemGroup>
+    <Delete Files="@(FilesToDelete)" />
   </Target>
 
 </Project>
