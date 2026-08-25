@@ -71,6 +71,6 @@ jobs:
 
       - name: Publish nuget package
         run: |
-          dotnet nuget add source https://codevision.pkgs.visualstudio.com/FStarLang/_packaging/fstarlang/nuget/v3/index.json --name fstarlang --username any --password ${{ secrets.AZ_DEVOPS_KEY }}
+          dotnet nuget add source https://codevision.pkgs.visualstudio.com/FStarLang/_packaging/fstarlang/nuget/v3/index.json --name fstarlang --username any --password ${{ secrets.AZ_DEVOPS_KEY }} --store-password-in-clear-text
           dotnet nuget push "artifacts/package/release/*.nupkg" --source https://codevision.pkgs.visualstudio.com/FStarLang/_packaging/fstarlang/nuget/v3/index.json --api-key az --skip-duplicate
         if: github.event_name == 'push' || github.event.inputs.publish_artifacts == 'true'
