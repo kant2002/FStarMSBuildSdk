@@ -12,17 +12,17 @@
   </PropertyGroup>
 
     <PropertyGroup Condition="'$(RuntimeIdentifier)' == 'win-x64'">
-        <FStarArchiveName>Windows_NT_x86_64</FStarArchiveName>
+        <FStarArchiveName>Windows_NT-x86_64</FStarArchiveName>
         <FStarArchiveType>zip</FStarArchiveType>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(RuntimeIdentifier)' == 'linux-x64'">
-        <FStarArchiveName>Linux_x86_64</FStarArchiveName>
+        <FStarArchiveName>Linux-x86_64</FStarArchiveName>
         <FStarArchiveType>tar.gz</FStarArchiveType>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(RuntimeIdentifier)' == 'osx-x64'">
-        <FStarArchiveName>Darwin_x86_64</FStarArchiveName>
+        <FStarArchiveName>Darwin-arm64</FStarArchiveName>
         <FStarArchiveType>tar.gz</FStarArchiveType>
     </PropertyGroup>
 </Project>
