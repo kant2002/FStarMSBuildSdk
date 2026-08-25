@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <_ArchiveBase>fstar_$(FStarCompilerVersion)_$(FStarArchiveName)</_ArchiveBase>
+    <_ArchiveBase>fstar_v$(FStarCompilerVersion)-$(FStarArchiveName)</_ArchiveBase>
     <_ArchiveName>$(_ArchiveBase).$(FStarArchiveType)</_ArchiveName>
     <_ArchivePath>$(OutputPath)$(_ArchiveName)</_ArchivePath>
     <_ArchiveDestination>$(OutputPath)fstar\</_ArchiveDestination>
